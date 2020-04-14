@@ -1,5 +1,6 @@
 package org.softwire.training.app;
 
+import org.flywaydb.core.Flyway;
 import org.softwire.training.models.Cat;
 
 import java.sql.SQLException;
@@ -9,6 +10,13 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) throws SQLException {
+
+        Flyway flyway = Flyway.configure().dataSource(
+                "jdbc:mysql://localhost:3306/cat_shelter?serverTimezone=UTC",
+                "root",
+                "jellyfish_123").load();
+        flyway.migrate();
+
         displayOwnersDirectFromDatabase();
         displayCatsAndOwnersWithHql();
         displayCatWithSql();
