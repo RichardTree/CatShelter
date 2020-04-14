@@ -1,0 +1,2 @@
+DELETE FROM cats;
+DELETE FROM owners;
